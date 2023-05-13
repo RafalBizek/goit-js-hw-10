@@ -1,4 +1,4 @@
-const baseUrl = 'https://restcountries.com/v3.1/';
+const baseUrl = 'https://restcountries.com/v3.1/name/{name}';
 
 export const fetchCountries = name => {
   const fields = 'fields=name.official,capital,population,flags.svg,languages';
