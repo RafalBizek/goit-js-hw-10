@@ -25,6 +25,7 @@ const createCountryInfo = country => {
   countryInfo.innerHTML = '';
   const countryFlag = document.createElement('img');
   countryFlag.setAttribute('src', country.flag); // Dodaj atrybut src i przypisz wartość flagi kraju
+  countryFlag.setAttribute('alt', country.name);
   const countryName = document.createElement('h2');
   countryName.textContent = country.name;
   const countryCapital = document.createElement('p');
