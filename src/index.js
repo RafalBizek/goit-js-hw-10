@@ -13,7 +13,10 @@ const createCountryList = countries => {
   countryList.innerHTML = '';
   countries.forEach(country => {
     const countryItem = document.createElement('li');
-    countryItem.innerHTML = `<img src="${country.flag}" alt="${country.name}" /><span>${country.name}</span>`;
+    countryItem.innerHTML = `<img src="${country.flag}" alt="${country.name}" width="90" height="70" /><span>${country.name}</span>`;
+    countryItem.addEventListener('click', () => {
+      createCountryInfo(country); // Dodaj przekazanie obiektu kraju do funkcji createCountryInfo
+    });
     countryList.appendChild(countryItem);
   });
 };
@@ -21,7 +24,7 @@ const createCountryList = countries => {
 const createCountryInfo = country => {
   countryInfo.innerHTML = '';
   const countryFlag = document.createElement('img');
-  countryFlag.src = country.flag;
+  countryFlag.setAttribute('src', country.flag); // Dodaj atrybut src i przypisz wartość flagi kraju
   const countryName = document.createElement('h2');
   countryName.textContent = country.name;
   const countryCapital = document.createElement('p');
@@ -50,6 +53,7 @@ const debouncedSearchCountry = debounce(() => {
 
   fetchCountries(searchValue)
     .then(countries => {
+      // console.log(countries);
       if (countries.length > 10) {
         Notiflix.Notify.info(
           'Too many matches found. Please enter a more specific name.'

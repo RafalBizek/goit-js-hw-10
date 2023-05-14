@@ -1,7 +1,7 @@
 const baseUrl = 'https://restcountries.com/v3.1/';
 
 export const fetchCountries = name => {
-  const fields = 'fields=name.official,capital,population,flags.svg,languages';
+  const fields = 'fields=name,flags.svg,capital,population,languages';
   const url = `${baseUrl}name/${encodeURIComponent(name)}?${fields}`;
 
   return fetch(url)
@@ -12,20 +12,12 @@ export const fetchCountries = name => {
       return response.json();
     })
     .then(data => {
-      if (!Array.isArray(data)) {
-        return []; // Zwraca pustą tablicę w przypadku braku wyników
-      }
-
-      const countries = data.map(country => {
-        const commonName =
-          country.name && country.name.official
-            ? country.name.official
-            : 'unknown';
-        const flag =
-          country.flags && country.flags.svg ? country.flags.svg : 'unknown';
+      const countries = Object.keys(data).map(key => {
+        const country = data[key];
+        const commonName = country.name.common || 'unknown';
         return {
-          name: commonName,
-          flag: flag,
+          name: commonName !== 'undefined' ? commonName : 'unknown',
+          flag: country.flags?.svg || '',
           capital: country.capital?.[0] || 'unknown',
           population: country.population || 'unknown',
           languages: Object.values(country.languages).join(', ') || 'unknown',
