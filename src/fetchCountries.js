@@ -1,7 +1,7 @@
 const baseUrl = 'https://restcountries.com/v3.1/';
 
 export const fetchCountries = name => {
-  const fields = 'fields=name,flags.svg,capital,population,languages';
+  const fields = 'fields=name,flags,capital,population,languages';
   const url = `${baseUrl}name/${encodeURIComponent(name)}?${fields}`;
 
   return fetch(url)
@@ -23,7 +23,7 @@ export const fetchCountries = name => {
           languages: Object.values(country.languages).join(', ') || 'unknown',
         };
       });
-
+      console.log(countries);
       return countries;
     })
     .catch(error => {

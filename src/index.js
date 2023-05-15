@@ -13,9 +13,16 @@ const createCountryList = countries => {
   countryList.innerHTML = '';
   countries.forEach(country => {
     const countryItem = document.createElement('li');
-    countryItem.innerHTML = `<img src="${country.flag}" alt="${country.name}" width="90" height="70" /><span>${country.name}</span>`;
+    const flagImg = document.createElement('img');
+    flagImg.setAttribute('src', country.flag); // Ustawienie atrybutu src na adres URL flagi kraju
+    flagImg.setAttribute('alt', country.name);
+    flagImg.classList.add('img-flags'); // Dodanie klasy img-flag
+    countryItem.appendChild(flagImg);
+    const countryName = document.createElement('span');
+    countryName.textContent = country.name;
+    countryItem.appendChild(countryName);
     countryItem.addEventListener('click', () => {
-      createCountryInfo(country); // Dodaj przekazanie obiektu kraju do funkcji createCountryInfo
+      createCountryInfo(country);
     });
     countryList.appendChild(countryItem);
   });
@@ -26,6 +33,7 @@ const createCountryInfo = country => {
   const countryFlag = document.createElement('img');
   countryFlag.setAttribute('src', country.flag); // Dodaj atrybut src i przypisz wartość flagi kraju
   countryFlag.setAttribute('alt', country.name);
+  countryFlag.classList.add('img-flag');
   const countryName = document.createElement('h2');
   countryName.textContent = country.name;
   const countryCapital = document.createElement('p');
