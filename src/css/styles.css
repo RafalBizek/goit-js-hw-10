@@ -17,6 +17,7 @@ body {
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+  margin-left: 20px;
 }
 
 .img-flags {
@@ -30,4 +31,17 @@ body {
 }
 .country-list {
   list-style: none;
+}
+.country-list__items:not(:last-child) {
+  margin-bottom: 10px;
+}
+.country-list__items:hover {
+  cursor: pointer;
+}
+.country-name {
+  font-weight: 500;
+}
+
+.country-info {
+  margin-left: 20px;
 }

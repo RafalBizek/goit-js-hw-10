@@ -13,12 +13,14 @@ const createCountryList = countries => {
   countryList.innerHTML = '';
   countries.forEach(country => {
     const countryItem = document.createElement('li');
+    countryItem.classList.add('country-list__items');
     const flagImg = document.createElement('img');
     flagImg.setAttribute('src', country.flag); // Ustawienie atrybutu src na adres URL flagi kraju
     flagImg.setAttribute('alt', country.name);
     flagImg.classList.add('img-flags'); // Dodanie klasy img-flag
     countryItem.appendChild(flagImg);
     const countryName = document.createElement('span');
+    countryName.classList.add('country-name');
     countryName.textContent = country.name;
     countryItem.appendChild(countryName);
     countryItem.addEventListener('click', () => {
